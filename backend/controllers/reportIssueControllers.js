@@ -21,7 +21,7 @@ const sendReport = async (req, res) => {
     });
     res.status(201).json({
       message: "Issue reported successfully",
-      isseuId: issueRef.id,
+      issueId: issueRef.id,
     });
   } catch (err) {
     console.error(`Error reporting issue`, err);
@@ -44,7 +44,7 @@ const getIssues = async (req, res) => {
     res.status(200).json(reports);
   } catch (err) {
     console.error(`Error fetching issues: `, err);
-    res.status(500).json({ message: "Internal server error" });
+    res.status(500).json({ error: err.message});
   }
 };
 module.exports = { sendReport, getIssues };

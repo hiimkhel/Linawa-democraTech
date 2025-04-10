@@ -10,29 +10,20 @@ const PoliciesList = () => {
   const [loadingSummaries, setLoadingSummaries] = useState({});
 
     const handleSummarize = async (key, text) =>{
-        const API_KEY = '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'
 
         setLoadingSummaries(prev => ({...prev, [key]: true}));
         try {
             
-            const response = await fetch('https://cors-anywhere.herokuapp.com/https://api-inference.huggingface.co/models/Ydrhan/Linawa-ai-summarizer', {
-              method: 'POST',
-              headers: {
-                'Authorization': `Bearer ${API_KEY}`,
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({ inputs: text }), // Send the text
+            const response = await axios.post('http://127.0.0.1:5000/summarize', {
+                text  // Send the text
             });
         
-            if (!response.ok) {
-              throw new Error('Network response was not ok');
-            }
         
-            const data = await response.json();
             setSummaries(prev => ({
               ...prev,
-              [key]: data?.data[0], // Assuming the response contains 'data' with a summarized text
+              [key]: response.data.summary,
             }));
+            console.log(data.summary);
           } catch (err) {
             console.error('Error summarizing:', err);
           }
