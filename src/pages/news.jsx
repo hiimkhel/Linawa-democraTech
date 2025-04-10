@@ -8,10 +8,15 @@ const News = () => {
 
   useEffect(() => {
     const getArticles = async () => {
-      const response = await fetch("https://linawa-backend-api.onrender.com/api/news/");
-      const data = await response.json();
-      console.log(data);
-      setArticles(data);
+      
+      try{
+        const response = await fetch("http://localhost:5000/api/news/");
+        const data = await response.json();
+        setArticles(data);
+      }catch(err){
+        console.error(`Error parsing JSON: `, err);
+      }
+      
     };
 
     getArticles();
