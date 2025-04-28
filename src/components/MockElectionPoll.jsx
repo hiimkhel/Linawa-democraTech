@@ -3,7 +3,7 @@ import { db } from "../firebase";
 import { collection, getDoc, doc, updateDoc, increment, setDoc, getDocs } from "firebase/firestore";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { FaCheckCircle } from "react-icons/fa"; 
-import "./MockElection.module.css";
+import styles from "./MockElection.module.css";
 
 const CandidatesPolling = () => {
   const [candidates, setCandidates] = useState([]);
