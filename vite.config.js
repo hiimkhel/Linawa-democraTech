@@ -5,11 +5,12 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   root: './src',
-  build:{
-    outDir: '../dist'
+  build: {
+    outDir: '../dist',  // Output the build to the correct directory
   },
   server: {
-    port: process.env.PORT || 5173,  // Use the PORT environment variable, fallback to 5173 for local development
+    host: '0.0.0.0',  // Make sure the server is accessible from outside
+    port: process.env.PORT || 5173,  // Use the dynamic PORT from Render, fallback to 5173 for local development
     strictPort: true,  // Ensure that the port is strictly followed (don't fall back to a different port)
   }
 })
